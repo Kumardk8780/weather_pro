@@ -5,6 +5,8 @@ import 'dart:ui';
 import 'package:intl/intl.dart';
 
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:weather_pro/main.dart';
 import 'package:weather_pro/secretes.dart';
 
 import 'additional_info_item.dart';
@@ -61,6 +63,12 @@ class _WeatherScreenState extends State<WeatherScreen> {
         actions: [
           IconButton(
             onPressed: () {
+              Provider.of<ThemeProvider>(context, listen: false).toggleTheme();
+            },
+            icon: const Icon(Icons.dark_mode_outlined, size: 28),
+          ),
+          IconButton(
+            onPressed: () {
               setState(() {
                 weather = getCurrentWeather();
               });
@@ -113,6 +121,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
                           padding: const EdgeInsets.all(16),
                           child: Column(
                             children: [
+                              const Text('London'),
                               Text(
                                 '${NumberFormat("###").format(currentTemp)}° C',
                                 style: const TextStyle(
